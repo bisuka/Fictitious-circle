@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :users do
-    get 'anime/top'
-  end
 	devise_for :admins, controllers: {
 	  sessions:      'admins/sessions',
 	  passwords:     'admins/passwords',
@@ -14,4 +11,8 @@ Rails.application.routes.draw do
 	}
 
 	root 'users/anime#top'
+
+	namespace :users do
+		resources :anime, only: [:index, :create, :edit, :show, :update, :destroy]
+	end
 end

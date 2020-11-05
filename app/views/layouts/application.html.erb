@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to "top", root_path, :style=>"color:white;" %>
+      <%= link_to "index", users_anime_index_path, :style=>"color:white;" %>
+      <%= link_to "ログイン", new_user_registration_path, :style=>"color:white;" %>
+    </header>
     <%= yield %>
   </body>
 </html>
