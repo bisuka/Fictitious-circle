@@ -29,11 +29,15 @@ body {
 	background-image: url(empty-blackboard.jpg);
 	background-size: cover;
 }
-.box1,.box2 {
+.box {
+	margin: 50px 100px;
+	background-color: green;
+}
+.box2 {
 	float: left;
-	margin: 100px;
+	margin: 100px 0px 100px 100px;
 }
 .box3 {
 	float: right;
-	margin: 100px;
+	margin: 100px 100px 100px 0px;
 }

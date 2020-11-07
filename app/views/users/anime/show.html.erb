@@ -1,16 +1,21 @@
 <h1>アニメ詳細ページ</h1>
 
-<div class="box1">
-	<h1>タグ</h1>
-</div>
+<div class="box">
+	<div class="box1">
+		<h1>タグ</h1>
+		<% @tags.each do |tag| %>
+		<%= link_to "#{tag.name}(#{tag.taggings_count})" %>
+		<% end %>
+	</div>
 
-<div class="table box2">
-	<span>アニメタイトル&emsp;</span><%= @anime.title %><br>
-	<span>部活名&emsp;</span><%=  @anime.circle %><br>
-	<span>活動内容&emsp;</span><%= @anime.activity_content %><br>
-	<span>詳細link&emsp;</span><%= @anime.link %><br>
-	<%= attachment_image_tag @anime, :image, :fill, 200, 200, format: 'jpeg', class:"img-fluid" %>
-	<%= link_to "編集", edit_users_anime_path(@anime) %><br>
-</div>
+	<div class="table box2">
+		<span>アニメタイトル&emsp;</span><%= @anime.title %><br>
+		<span>部活名&emsp;</span><%=  @anime.circle %><br>
+		<span>活動内容&emsp;</span><%= @anime.activity_content %><br>
+		<span>詳細link&emsp;</span><%= @anime.link %><br>
+		<%= attachment_image_tag @anime, :image, :fill, 200, 200, format: 'jpeg', class:"img-fluid" %>
+		<%= link_to "編集", edit_users_anime_path(@anime) %><br>
+	</div>
 
-<%= render 'list' %>
+	<%= render 'list' %>
+</div>
