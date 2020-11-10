@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
 * {
 	margin: 0;
 	padding: 0;
@@ -25,19 +26,18 @@
 body {
 	color: white;
 	font-family: 'crayon';
-	font-size: 150%;
+	font-size: 250%;
 	background-image: url(empty-blackboard.jpg);
 	background-size: cover;
 }
-.box {
-	margin: 50px 100px;
-	background-color: green;
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>thead>tr>th {
+    border-style: none;
+    padding: 0;
 }
-.box2 {
-	float: left;
-	margin: 100px 0px 100px 100px;
-}
-.box3 {
-	float: right;
-	margin: 100px 100px 100px 0px;
-}
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.2em; }
+.css3 { font-size: 1.4em; }
+.css4 { font-size: 1.6em; }
+

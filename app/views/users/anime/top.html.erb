@@ -1,12 +1,14 @@
-<h1>新着・ランキング</h1>
-
 <div class="box">
 	<div class="box1">
 		<h1>タグ</h1>
 		<% @tags.each do |tag| %>
-		<%= link_to "#{tag.name}(#{tag.taggings_count})" %>
+		<%= link_to "#{tag.name}(#{tag.taggings_count})", tag_users_anime_index_path(tag.id) %>
 		<% end %>
 	</div>
+
+<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+  <%= link_to "#{tag.name}(#{tag.taggings_count})", { :action => :tag, :name => tag.name }, :class => css_class %>
+<% end %>
 
 	<%= render 'list' %>
 </div>

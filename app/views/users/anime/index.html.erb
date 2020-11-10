@@ -1,27 +1,24 @@
-<h1>新規登録・一覧</h1>
-
-<div class="box">
-	<div class="box1">
-		<h1>タグ</h1>
-		<% @tags.each do |tag| %>
-		<%= link_to "#{tag.name}(#{tag.taggings_count})" %>
-		<% end %>
-	</div>
+<div class="container">
+	<h1>タグ</h1>
+	<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+	  <%= link_to "#{tag.name}(#{tag.taggings_count})", { :action => :tag, :name => tag.name }, :class => css_class %>
+	<% end %>
 
 	<!-- アニメ登録 -->
-	<div class="box2">
-	<%= form_with model:@anime, url:users_anime_index_path, method: :post, local: true do |f| %>
-		<p>アニメタイトル<%= f.text_field :title %></p>
-		<p>部活名<%= f.text_field :circle %></p>
-		<p>活動内容<%= f.text_area :activity_content %></p>
-		<p><%= f.attachment_field :image %></p>
-		<p>詳細link<%= f.text_field :link %></p>
-		<p>タグ<%= f.text_field :tag_list %></p>
-		<%= f.submit "送信" %>
-	<% end %>
-	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<%= form_with model:@anime, url:users_anime_index_path, method: :post, local: true do |anime| %>
+				<h2 class="text-center">登録</h2>
+				<%= render 'form', anime: anime %>
+				<%= anime.submit "送信" %>
+				<%= link_to "Top", tag_users_anime_index_path %>
+			<% end %>
+		</div>
 
-	<%= render 'list' %>
+		<div class="col-sm-6">
+			<%= render 'list' %>
+		</div>
+	</div>
 </div>
 
 

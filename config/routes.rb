@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :users do
-    get 'favorites/create'
-    get 'favorites/destroy'
-  end
 	devise_for :admins, controllers: {
 	  sessions:      'admins/sessions',
 	  passwords:     'admins/passwords',
@@ -17,7 +13,11 @@ Rails.application.routes.draw do
 	root 'users/anime#top'
 
 	namespace :users do
-		resources :anime
-    	resource :favorites, only: [:create, :destroy]
+		resources :anime do
+    		resource :favorites, only: [:create, :destroy]
+			collection do
+				get 'tag'
+			end
+	    end
 	end
 end

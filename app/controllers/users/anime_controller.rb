@@ -53,6 +53,16 @@ class Users::AnimeController < ApplicationController
 	def destroy
 	end
 
+	# アニメ登録
+	def tag
+		@name = params[:name]
+		@animes = Anime.tagged_with(params[:name])
+  		@tags = Anime.tag_counts_on(:tags).most_used(20)
+
+  		# group 同名カラムを一つにまとめる,	order 並び替え
+    	@ranks = Favorite.group(:anime_id).order('count(anime_id) desc').limit(10)
+	end
+
 	private
 	def anime_params
 		params.require(:anime).permit(:title, :circle, :activity_content, :image, :link, :tag_list)
