@@ -10,6 +10,11 @@ class Users::AnimeController < ApplicationController
 		@anime = Anime.new
 		@animes = Anime.all
 		@tags = Anime.tag_counts_on(:tags).most_used(20)
+
+		# アニメ検索
+		if params[:title].present?
+			@animes = Anime.where('title LIKE ?', "%#{params[:title]}%")
+		end
 	end
 
 	# アニメ作成

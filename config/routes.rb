@@ -10,14 +10,13 @@ Rails.application.routes.draw do
 	  registrations: 'users/registrations'
 	}
 
-	root 'users/anime#top'
+	root 'users/anime#tag'
 
 	namespace :users do
 		resources :anime do
     		resource :favorites, only: [:create, :destroy]
-			collection do
-				get 'tag'
-			end
+    		get :search, to: 'anime#index', on: :collection
+			get :tag, on: :collection
 	    end
 	end
 end

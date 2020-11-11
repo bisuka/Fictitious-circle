@@ -12,9 +12,13 @@
   <body>
     <% if user_signed_in? %>
       <header>
-        <%= link_to "top", root_path, :style=>"color:white;" %>
-        <%= link_to "index", users_anime_index_path, :style=>"color:white;" %>
+        <%= link_to "top", tag_users_anime_index_path, :style=>"color:white;" %>
+        <%= link_to "登録", users_anime_index_path, :style=>"color:white;" %>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:white;" %>
+        <%= form_with url: search_users_anime_index_path, method: :get, local: true do |anime| %>
+          <%= anime.text_field :title, :style=>"color:black;" %>
+          <%= anime.submit :検索 %>
+        <% end %>
       </header>
     <% else %>
       <header>
@@ -23,6 +27,7 @@
         <%= link_to "ログイン", new_user_registration_path, :style=>"color:white;" %>
       </header>
     <% end %>
+
     <%= yield %>
   </body>
 </html>
