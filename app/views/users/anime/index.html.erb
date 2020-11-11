@@ -1,0 +1,30 @@
+<div class="container">
+	<h1>タグ</h1>
+	<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+	  <%= link_to "#{tag.name}(#{tag.taggings_count})", { :action => :tag, :name => tag.name }, :class => css_class %>
+	<% end %>
+
+	<!-- アニメ登録 -->
+	<div class="row">
+		<div class="col-sm-6">
+			<%= form_with model:@anime, url:users_anime_index_path, method: :post, local: true do |anime| %>
+				<h2 class="text-center">登録</h2>
+				<%= render 'form', anime: anime %>
+				<%= anime.submit "送信" %>
+				<%= link_to "Top", tag_users_anime_index_path %>
+			<% end %>
+		</div>
+
+		<div class="col-sm-6">
+			<%= render 'list' %>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+<!-- 入力form -->
+<div class="row">
+	<div class="col-xs-3">
+		<span>タイトル</span>
+	</div>
+
+	<div class="col-xs-6">
+		<div class="row">
+			<%= anime.text_field :title, class:"form-control" %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-3">
+		<span>部活名</span>
+	</div>
+
+	<div class="col-xs-6">
+		<div class="row">
+			<%= anime.text_field :circle, class:"form-control" %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-3">
+		<span>活動内容</span>
+	</div>
+
+	<div class="col-xs-6">
+		<div class="row">
+			<%= anime.text_area :activity_content, class:"form-control" %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<%= anime.attachment_field :image %>
+</div>
+
+<div class="row">
+	<div class="col-xs-3">
+		<span>詳細link</span>
+	</div>
+
+	<div class="col-xs-6">
+		<div class="row">
+			<%= anime.text_field :link, class:"form-control" %>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-3">
+		<span>タグ</span>
+	</div>
+
+	<div class="col-xs-6">
+		<div class="row">
+			<%= anime.text_field :tag_list, class:"form-control" %>
+		</div>
+	</div>
+</div>

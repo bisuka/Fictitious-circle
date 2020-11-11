@@ -1,0 +1,30 @@
+<div class="container">
+	<h1>タグ</h1>
+	<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+	  <%= link_to "#{tag.name}(#{tag.taggings_count})", { :action => :tag, :name => tag.name }, :class => css_class %>
+	<% end %>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<h2 class="text-center">詳細</h2>
+			<span>アニメタイトル&emsp;</span><%= @anime.title %><br>
+			<span>部活名&emsp;</span><%=  @anime.circle %><br>
+			<span>活動内容&emsp;</span><%= @anime.activity_content %><br>
+			<span>詳細link&emsp;</span><%= @anime.link %><br>
+			<%= attachment_image_tag @anime, :image, :fill, 200, 200, format: 'jpeg', class:"img-fluid" %>
+			<%= link_to "編集", edit_users_anime_path(@anime) %>
+
+			<% if @anime.favorited_by?(current_user) %>
+				<%= link_to '退部', users_anime_favorites_path(@anime), method: :delete, :style=>"color:white;" %>
+				<span>部員<%= @anime.favorites.count %>名</span>
+			<% else %>
+				<%= link_to '入部', users_anime_favorites_path(@anime), method: :post, :style=>"color:yellow;" %>
+				<span>部員<%= @anime.favorites.count %>名</span>
+			<% end %>
+		</div>
+
+		<div class="col-sm-6">
+			<%= render 'list' %>
+		</div>
+	</div>
+</div>

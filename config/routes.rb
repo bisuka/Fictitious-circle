@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :users do
-    get 'anime/top'
-  end
 	devise_for :admins, controllers: {
 	  sessions:      'admins/sessions',
 	  passwords:     'admins/passwords',
@@ -13,5 +10,13 @@ Rails.application.routes.draw do
 	  registrations: 'users/registrations'
 	}
 
-	root 'users/anime#top'
+	root 'users/anime#tag'
+
+	namespace :users do
+		resources :anime do
+    		resource :favorites, only: [:create, :destroy]
+    		get :search, to: 'anime#index', on: :collection
+			get :tag, on: :collection
+	    end
+	end
 end

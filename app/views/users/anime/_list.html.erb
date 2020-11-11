@@ -1,0 +1,14 @@
+<!-- アニメ一覧 -->
+<table class="table">
+	<h2 class="text-center"><%= link_to "一覧", users_anime_index_path, :style=>"color:white;" %></h2>
+	<tr>
+		<th>部活名</th>
+		<th>アニメタイトル</th>
+	</tr>
+	<% @animes.each do |animes| %>
+		<tr>
+			<td><%= link_to animes.circle, users_anime_path(animes), :style=>"color:yellow;" %></td>
+			<td><%= animes.title %></td>
+		</tr>
+	<% end %>
+</table>
