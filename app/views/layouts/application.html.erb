@@ -12,22 +12,36 @@
   <body>
     <% if user_signed_in? %>
       <header>
-        <%= link_to "top", tag_users_anime_index_path, :style=>"color:white;" %>
-        <%= link_to "登録", users_anime_index_path, :style=>"color:white;" %>
+        <%= link_to "top", root_path, :style=>"color:white;" %>
+        <%= link_to "申請", users_anime_index_path, :style=>"color:white;" %>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:white;" %>
-        <%= form_with url: search_users_anime_index_path, method: :get, local: true do |anime| %>
-          <%= anime.text_field :title, :style=>"color:black;" %>
-          <%= anime.submit :検索 %>
+
+        <% if admin_signed_in? %>
+          <%= link_to "管理者top", admins_anime_index_path, :style=>"color:white;" %>
+          <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, :style=>"color:white;" %>
         <% end %>
       </header>
+
     <% else %>
       <header>
         <%= link_to "top", root_path, :style=>"color:white;" %>
-        <%= link_to "index", users_anime_index_path, :style=>"color:white;" %>
-        <%= link_to "ログイン", new_user_registration_path, :style=>"color:white;" %>
+        <%= link_to "申請", users_anime_index_path, :style=>"color:white;" %>
+        <%= link_to "ログイン", new_user_session_path, :style=>"color:white;" %>
       </header>
     <% end %>
 
+    <div class="text-center">
+      <%= link_to root_path, :style=>"color:white;" do %>
+        <h1>FictitiousCircle</h1>
+      <% end %>
+
+      <%= form_with url: search_users_anime_index_path, method: :get, local: true do |anime| %>
+        <%= anime.text_field :title, :style=>"color:black;" %>
+        <%= anime.submit :検索 %>
+      <% end %>
+    </div>
+
     <%= yield %>
+
   </body>
 </html>

@@ -1,0 +1,23 @@
+<div class="container">
+	<h1>管理者　アニメ詳細ページ</h1>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<h2 class="text-center">詳細</h2>
+			<span>アニメタイトル&emsp;</span><%= @anime.title %><br>
+			<span>部活名&emsp;</span><%=  @anime.circle %><br>
+			<span>活動内容&emsp;</span><%= @anime.activity_content %><br>
+			<span>詳細link&emsp;</span><%= @anime.link %><br>
+			<%= attachment_image_tag @anime, :image, :fill, 200, 200, format: 'jpeg', class:"img-fluid" %>
+
+			<% if current_admin != nil %>
+				<%= link_to "編集", edit_admins_anime_path(@anime) %>
+				<%= link_to "削除", admins_anime_path(@anime), method: :delete, "data-confirm" => "削除するよ!?" %>
+			<% end %>
+		</div>
+
+		<div class="col-sm-6">
+			<%= render 'list' %>
+		</div>
+	</div>
+</div>

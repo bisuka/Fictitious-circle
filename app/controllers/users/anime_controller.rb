@@ -3,6 +3,7 @@ class Users::AnimeController < ApplicationController
 	def top
 		@animes = Anime.all
 		@tags = Anime.tag_counts_on(:tags).most_used(20)
+		@ranks = Favorite.group(:anime_id).order('count(anime_id) desc').limit(10)
 	end
 
 	# アニメ登録
@@ -22,7 +23,7 @@ class Users::AnimeController < ApplicationController
         anime = Anime.new(anime_params)
         anime.user_id = current_user.id
         if anime.save
-        	redirect_to root_path
+        	redirect_to users_anime_index_path
         else
         	@animes = Anime.all
         	render :index
@@ -31,6 +32,9 @@ class Users::AnimeController < ApplicationController
 
 	# アニメ編集
 	def edit
+		if current_user == nil
+			redirect_to new_user_session_path
+		end
 		@anime = Anime.find(params[:id])
 		@animes = Anime.all
 		@tags = Anime.tag_counts_on(:tags).most_used(20)
@@ -41,6 +45,7 @@ class Users::AnimeController < ApplicationController
   		@anime = Anime.find(params[:id])
   		@animes = Anime.all
   		@tags = Anime.tag_counts_on(:tags).most_used(20)
+  		@user = @anime.user
 	end
 
 	# アニメ更新
@@ -56,6 +61,9 @@ class Users::AnimeController < ApplicationController
 
 	# アニメ削除
 	def destroy
+		anime = Anime.find(params[:id])
+		anime.destroy
+		redirect_to users_anime_index_path
 	end
 
 	# アニメ登録
