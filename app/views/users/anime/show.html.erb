@@ -1,7 +1,7 @@
 <div class="container">
-	<h1>タグ</h1>
+	<b>タグ</b>
 	<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
-	  <%= link_to "#{tag.name}(#{tag.taggings_count})", { :action => :tag, :name => tag.name }, :class => css_class %>
+	  <%= link_to "#{tag.name}(#{tag.taggings_count})", { :action => :tag, :name => tag.name } %>
 	<% end %>
 
 	<div class="row">
@@ -12,14 +12,18 @@
 			<span>活動内容&emsp;</span><%= @anime.activity_content %><br>
 			<span>詳細link&emsp;</span><%= @anime.link %><br>
 			<%= attachment_image_tag @anime, :image, :fill, 200, 200, format: 'jpeg', class:"img-fluid" %>
-			<%= link_to "編集", edit_users_anime_path(@anime) %>
 
-			<% if @anime.favorited_by?(current_user) %>
-				<%= link_to '退部', users_anime_favorites_path(@anime), method: :delete, :style=>"color:white;" %>
-				<span>部員<%= @anime.favorites.count %>名</span>
-			<% else %>
-				<%= link_to '入部', users_anime_favorites_path(@anime), method: :post, :style=>"color:yellow;" %>
-				<span>部員<%= @anime.favorites.count %>名</span>
+			<% if @user == current_user %>
+				<%= link_to "編集", edit_users_anime_path(@anime) %>
+				<%= link_to "削除", users_anime_path(@anime), method: :delete, "data-confirm" => "削除するよ!?" %>
+
+				<% if @anime.favorited_by?(current_user) %>
+					<%= link_to '退部', users_anime_favorites_path(@anime), method: :delete, :style=>"color:white;" %>
+					<span>部員<%= @anime.favorites.count %>名</span>
+				<% else %>
+					<%= link_to '入部', users_anime_favorites_path(@anime), method: :post, :style=>"color:yellow;" %>
+					<span>部員<%= @anime.favorites.count %>名</span>
+				<% end %>
 			<% end %>
 		</div>
 
