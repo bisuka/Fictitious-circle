@@ -10,25 +10,22 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <header>
+    <header>
+      <% if user_signed_in? %>
         <%= link_to "top", root_path, :style=>"color:white;" %>
         <%= link_to "申請", users_anime_index_path, :style=>"color:white;" %>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:white;" %>
+      <% else %>
+          <%= link_to "top", root_path, :style=>"color:white;" %>
+          <%= link_to "申請", users_anime_index_path, :style=>"color:white;" %>
+          <%= link_to "ログイン", new_user_session_path, :style=>"color:white;" %>
+      <% end %>
 
-        <% if admin_signed_in? %>
-          <%= link_to "管理者top", admins_anime_index_path, :style=>"color:white;" %>
-          <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, :style=>"color:white;" %>
-        <% end %>
-      </header>
-
-    <% else %>
-      <header>
-        <%= link_to "top", root_path, :style=>"color:white;" %>
-        <%= link_to "申請", users_anime_index_path, :style=>"color:white;" %>
-        <%= link_to "ログイン", new_user_session_path, :style=>"color:white;" %>
-      </header>
-    <% end %>
+      <% if admin_signed_in? %>
+        <%= link_to "管理者top", admins_anime_index_path, :style=>"color:white;" %>
+        <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, :style=>"color:white;" %>
+      <% end %>
+    </header>
 
     <div class="text-center">
       <%= link_to root_path, :style=>"color:white;" do %>
