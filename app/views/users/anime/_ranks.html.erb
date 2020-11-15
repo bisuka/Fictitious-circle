@@ -1,0 +1,17 @@
+	<%= form_with model:@anime, url:users_anime_index_path, method: :post, local: true do |anime| %>
+		<h2 class="text-center">部員数</h2>
+		<% @ranks.each_with_index do |anime, i| %>
+			<span><%= i+1 %>位</span>
+			<%= anime.anime.circle %><br>
+		<% end %>
+	<% end %>
+</div>
+
+<div class="col-sm-3">
+	<h2 class="text-center">入部済み</h2>
+	<% if current_user != nil %>
+		<% @likes.each do |like| %>
+			<% animes = Anime.find_by(id: like.anime_id) %>
+			<%= link_to animes.circle, users_anime_path(animes), :style=>"color:pink;" %>
+		<% end %>
+	<% end %>

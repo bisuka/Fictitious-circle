@@ -4,6 +4,9 @@ class Users::AnimeController < ApplicationController
 		@animes = Anime.all
 		@tags = Anime.tag_counts_on(:tags).most_used(20)
 		@ranks = Favorite.group(:anime_id).order('count(anime_id) desc').limit(10)
+  		if current_user != nil
+  			@likes = Favorite.where(user_id: current_user.id)
+  		end
 	end
 
 	# アニメ登録
@@ -74,6 +77,9 @@ class Users::AnimeController < ApplicationController
 
   		# group 同名カラムを一つにまとめる,	order 並び替え
     	@ranks = Favorite.group(:anime_id).order('count(anime_id) desc').limit(10)
+    	if current_user != nil
+  			@likes = Favorite.where(user_id: current_user.id)
+  		end
 	end
 
 	private
