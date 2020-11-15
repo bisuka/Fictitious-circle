@@ -9,7 +9,10 @@
 			<h2 class="text-center">詳細</h2>
 			<span>アニメタイトル&emsp;</span><%= @anime.title %><br>
 			<span>部活名&emsp;</span><%=  @anime.circle %><br>
-			<span>活動内容&emsp;</span><%= @anime.activity_content %><br>
+			<span>活動内容&emsp;</span>
+			<font color="lime">
+				<%= @anime.activity_content %>
+			</font><br>
 			<span>詳細link&emsp;</span><%= link_to "URLへ移動", @anime.link, :style=>"color:yellow;" %><br>
 			<%= attachment_image_tag @anime, :image, :fill, 200, 200, format: 'jpeg', class:"img-fluid" %>
 
