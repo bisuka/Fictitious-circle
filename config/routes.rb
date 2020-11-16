@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 	  registrations: 'users/registrations'
 	}
 
-	root 'users/anime#top'
+	root 'users/anime#about'
+  	get '/users/anime/top' => 'users/anime#top'
 
 	namespace :admins do
 		resources :anime, only: [:index, :edit, :show, :update, :destroy]

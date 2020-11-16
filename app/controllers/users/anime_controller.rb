@@ -1,5 +1,9 @@
 class Users::AnimeController < ApplicationController
- 	# 新着・ランキング表示
+	# サイト概要
+	def about
+	end
+
+ 	# ランキング表示
 	def top
 		@animes = Anime.all.order(created_at: :desc)
 		@tags = Anime.tag_counts_on(:tags).most_used(20)
