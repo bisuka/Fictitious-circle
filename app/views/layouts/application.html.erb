@@ -12,13 +12,13 @@
   <body>
     <header>
       <% if user_signed_in? %>
-        <%= link_to "top", root_path, :style=>"color:white;" %>
+        <%= link_to "top", users_anime_top_path, :style=>"color:white;" %>
         <%= link_to "申請", users_anime_index_path, :style=>"color:white;" %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:white;" %>
+        <%= link_to "帰宅", destroy_user_session_path, method: :delete, :style=>"color:white;" %>
       <% else %>
-          <%= link_to "top", root_path, :style=>"color:white;" %>
+          <%= link_to "top", users_anime_top_path, :style=>"color:white;" %>
           <%= link_to "申請", users_anime_index_path, :style=>"color:white;" %>
-          <%= link_to "ログイン", new_user_session_path, :style=>"color:white;" %>
+          <%= link_to "入学", new_user_session_path, :style=>"color:white;" %>
       <% end %>
 
       <% if admin_signed_in? %>
@@ -28,7 +28,7 @@
     </header>
 
     <div class="text-center">
-      <%= link_to root_path, :style=>"color:white;" do %>
+      <%= link_to users_anime_top_path, :style=>"color:white;" do %>
         <h1>FictitiousCircle</h1>
       <% end %>
 

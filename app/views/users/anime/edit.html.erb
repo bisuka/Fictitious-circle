@@ -1,7 +1,7 @@
 <div class="container">
 	<b>タグ</b>
 	<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
-	  <%= link_to "#{tag.name}(#{tag.taggings_count})", { :action => :tag, :name => tag.name } %>
+	  <%= link_to "#{tag.name}(#{tag.taggings_count})", { :action => :tag, :name => tag.name }, :style=>"color:lime;" %>
 	<% end %>
 
 	<!-- アニメ更新 -->
